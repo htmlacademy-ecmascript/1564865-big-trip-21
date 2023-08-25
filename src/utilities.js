@@ -9,6 +9,14 @@ function formatDate(value) {
 }
 
 /**
+ * @param {dayjs.ConfigType} value
+ * @returns {string}
+ */
+function formatTime(value) {
+  return dayjs(value).format('HH:mm');
+}
+
+/**
   * @param {TemplateStringsArray} strings
   * @param {...any} values
   * @returns {string}
@@ -27,4 +35,4 @@ function html(strings, ...values) {
   });
 }
 
-export { html, formatDate };
+export { formatDate, formatTime, html };
