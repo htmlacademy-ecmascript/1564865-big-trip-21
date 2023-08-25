@@ -40,6 +40,14 @@ function formatDuration(valueFrom, valueTo) {
 }
 
 /**
+ * @param {number} value
+ * @returns {string}
+ */
+function formatNumber(value) {
+  return value.toLocaleString('en');
+}
+
+/**
   * @param {TemplateStringsArray} strings
   * @param {...any} values
   * @returns {string}
@@ -58,4 +66,4 @@ function html(strings, ...values) {
   });
 }
 
-export { formatDate, formatTime, formatDuration, html };
+export { formatDate, formatTime, formatDuration, formatNumber, html };
