@@ -1,3 +1,13 @@
+import dayjs from 'dayjs';
+
+/**
+ * @param {dayjs.ConfigType} value
+ * @returns {string}
+ */
+function formatDate(value) {
+  return dayjs(value).format('MMM D');
+}
+
 /**
   * @param {TemplateStringsArray} strings
   * @param {...any} values
@@ -17,4 +27,4 @@ function html(strings, ...values) {
   });
 }
 
-export { html };
+export { html, formatDate };
