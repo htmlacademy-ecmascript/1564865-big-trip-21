@@ -13,19 +13,21 @@ class ListPresenter extends Presenter {
   constructor(...rest) {
     super(...rest);
 
-    // this.view.addEventListener('change', this.onViewChange.bind(this));
+    this.view.addEventListener('open', this.onViewOpen.bind(this));
+    this.view.addEventListener('close', this.onViewClose.bind(this));
   }
 
   /**
    * @override
    */
   updateView() {
+    const params = this.navigation.getParams();
     const points = this.model.getPoints();
     const destinations = this.model.getDestinations();
     const offerGroups = this.model.getOfferGroups();
 
-    const items = points.map((point, index) => {
-      const {offers} = offerGroups.find((group) => group.type === point.type);
+    const items = points.map((point) => {
+      const { offers } = offerGroups.find((group) => group.type === point.type);
 
       return {
         id: point.id,
@@ -50,11 +52,32 @@ class ListPresenter extends Presenter {
         })),
 
         isFavorite: point.isFavorite,
-        isEditable: index === 1
+        isEditable: params.edit === point.id
       };
     });
 
-    this.view.setState({items});
+    this.view.setState({ items });
+  }
+
+  /**
+   * @param {CustomEvent & {
+   * target: import('../views/card-view').default
+   * }} event
+   */
+  onViewOpen(event) {
+    const params = this.navigation.getParams();
+
+    params.edit = event.target.state.id;
+
+    this.navigation.setParams(params);
+  }
+
+  onViewClose() {
+    const params = this.navigation.getParams();
+
+    delete params.edit;
+
+    this.navigation.setParams(params);
   }
 }
 
