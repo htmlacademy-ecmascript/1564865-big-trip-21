@@ -1,4 +1,4 @@
-import navigation from '../navigation';
+import navigation from '../navigation.js';
 /**
  * @template {import('../views/view').default} View
  * @template {import('../models/model').default} Model
