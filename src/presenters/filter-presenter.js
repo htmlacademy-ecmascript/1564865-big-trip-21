@@ -20,7 +20,18 @@ class FilterPresenter extends Presenter {
    * @override
    */
   updateView() {
-    this.view.render();
+    /**
+     * @type {Array<FilterType>}
+     */
+    const values = ['everything', 'future', 'past', 'present'];
+
+    const items = values.map((value) => ({
+      value,
+      isSelected: value === 'everything',
+      isDisabled: value === 'future'
+    }));
+
+    this.view.setState({items});
   }
 }
 
