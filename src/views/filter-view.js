@@ -5,7 +5,7 @@ import { html } from '../utilities.js';
  * @typedef {{
  *  value: FilterType
  *  isSelected: boolean
- *  isDisable: boolean
+ *  isDisabled: boolean
  * }} ItemState
  *
  * @typedef {{
