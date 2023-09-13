@@ -3,6 +3,7 @@ import points from '../data/points.json';
 import destinations from '../data/destination.json';
 import offerGroups from '../data/offers.json';
 import PointModel from './point-model.js';
+import { duration } from 'dayjs';
 
 class AppModel extends Model {
   constructor() {
@@ -29,7 +30,7 @@ class AppModel extends Model {
     this.sortCallbacks = {
       day: (pointA, pointB) => pointA.dateFromInMs - pointB.dateFromInMs,
       event: () => 0,
-      time: () => 0,
+      time: (pointA, pointB) => pointB.durationInMs - pointA.durationInMs,
       price: (pointA, pointB) => pointB.basePrice - pointA.basePrice,
       offers: () => 0
     };
@@ -46,9 +47,6 @@ class AppModel extends Model {
     this.destinations = destinations;
     // @ts-ignore
     this.offerGroups = offerGroups;
-    console.table(
-      this.getPoints({sort: 'day'})
-    );
   }
 
   /**
