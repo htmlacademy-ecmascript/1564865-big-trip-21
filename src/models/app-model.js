@@ -3,7 +3,6 @@ import points from '../data/points.json';
 import destinations from '../data/destination.json';
 import offerGroups from '../data/offers.json';
 import PointModel from './point-model.js';
-import { duration } from 'dayjs';
 
 class AppModel extends Model {
   constructor() {
