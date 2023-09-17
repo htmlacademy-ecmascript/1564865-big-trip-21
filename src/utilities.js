@@ -1,7 +1,24 @@
+import 'flatpickr/dist/flatpickr.css';
+import flatpickr from 'flatpickr';
 import dayjs from 'dayjs';
 import durationPlugin from 'dayjs/plugin/duration.js';
 
 dayjs.extend(durationPlugin);
+
+/**
+ * @param {HTMLInputElement} inputFrom
+ * @param {HTMLInputElement} inputTo
+ * @return {Function}
+ */
+function createCalendars(inputFrom, inputTo) {
+  const calendarFrom = flatpickr(inputFrom);
+  const calendarTo = flatpickr(inputTo);
+
+  return () => {
+    calendarFrom.destroy();
+    calendarTo.destroy();
+  };
+}
 
 /**
  * @param {dayjs.ConfigType} value
@@ -66,4 +83,4 @@ function html(strings, ...values) {
   });
 }
 
-export { formatDate, formatTime, formatDuration, formatNumber, html };
+export { createCalendars, formatDate, formatTime, formatDuration, formatNumber, html };
