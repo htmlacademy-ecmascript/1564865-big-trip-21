@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,15 +35,20 @@
     </header>
     <main class="page-body__page-main  page-main">
       <div class="page-body__container">
-          <section class="trip-events">
-            <h2 class="visually-hidden">Trip events</h2>
+        <section class="trip-events">
+          <h2 class="visually-hidden">Trip events</h2>
 
-            <!-- Сортировка -->
+          <!-- Сортировка -->
           <sort-view class="trip-events__trip-sort"></sort-view>
-            <!-- Контент -->
-            <list-view></list-view>
-          </section>
+
+          <!-- Сообщение при отсутствии контента -->
+          <placeholder-view></placeholder-view>
+
+          <!-- Контент -->
+          <list-view></list-view>
+        </section>
       </div>
     </main>
   </body>
+
 </html>
