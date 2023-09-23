@@ -2,6 +2,7 @@ import 'flatpickr/dist/flatpickr.css';
 import flatpickr from 'flatpickr';
 import dayjs from 'dayjs';
 import durationPlugin from 'dayjs/plugin/duration.js';
+import { escape } from 'he';
 
 dayjs.extend(durationPlugin);
 
@@ -98,4 +99,28 @@ function html(strings, ...values) {
   });
 }
 
-export { createCalendars, formatDate, formatTime, formatDuration, formatNumber, html };
+/**
+ * @param {any} data
+ * @returns {any}
+ */
+function sanitize(data) {
+  switch (data?.constructor) {
+    case String:
+      return escape(data);
+
+    case Array:
+      return data.map(sanitize);
+
+    case Object:
+      return Object.keys(data).reduce((copy, key) => {
+        copy[key] = sanitize(data[key]);
+
+        return copy;
+      }, {});
+
+    default:
+      return data;
+  }
+}
+
+export { createCalendars, formatDate, formatTime, formatDuration, formatNumber, html, sanitize };
