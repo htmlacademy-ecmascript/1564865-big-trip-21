@@ -190,8 +190,15 @@ class EditorView extends View {
    * @returns {string}
    */
   createSubmitButtonHtml() {
+    const { isSaving } = this.state;
+
     return html`
-      <button class="event__save-btn  btn  btn--blue" type="submit">Save</button>
+      <button
+        class="event__save-btn  btn  btn--blue"
+        type="submit"
+        ${isSaving ? 'disabled' : ''}>
+        ${isSaving ? 'Saving...' : 'Save'}
+      </button>
     `;
   }
 
@@ -331,7 +338,7 @@ class EditorView extends View {
    * @param {Event} event
    */
   onReset(event) {
-    const {id} = this.state;
+    const { id } = this.state;
 
     event.preventDefault();
     this.dispatch(id === 'draft' ? 'close' : 'delete');
